@@ -8,9 +8,9 @@ nwMAME is multi-platform (Windows, Linux, OS X) MAME front-end which uses power 
 
 As an OS X user, I highly influenced on [OpenEmu](http://openemu.org) project when I starting nwMAME project because OpenEmu wasn't enough to manage MAME library as I expected and using MAME in OpenEmu with giving up detailed MAME settings was driving me crazy! That's why I decided to make my own MAME front-end for fun.
 
-#Does nwMAME compatibe with dedicated MAME-PCs?
+#Does nwMAME compatible with dedicated MAME-PCs?
 
-Technically speaking, it can run anywhere where **NW.JS** runs but; user interface is designed and aimed for keyboard-mouse use only and that's why it's not suitable for dedicated MAME-PCs. No one wants to use keyboard-mouse between their game sessions. That's why I'm plannig any other project for dedicated MAME-PCs especially use it with mame joysticks. (or; I can merge these two project into one project. Hmmm)
+Technically speaking, it can run anywhere where **NW.JS** runs but; user interface is designed and aimed for keyboard-mouse use only and that's why it's not suitable for dedicated MAME-PCs. No one wants to use keyboard-mouse between their game sessions. That's why I'm planning any other project for dedicated MAME-PCs especially use it with mame joysticks. (or; I can merge these two project into one project. Hmmm)
 
 #Final Notes :
 
@@ -29,7 +29,7 @@ Optionally you can embed nwMAME into NW.JS according to [this article](https://g
 
 #Using nwMAME (My Experience)
 
-Well, starting intructions with "My Experience" idiom is not quite correct because I designed all application logic according to experience that I want. But I'm sure you're gonna love it ;)
+Well, starting instructions with "My Experience" idiom is not quite correct because I designed all application logic according to experience that I want. But I'm sure you're gonna love it ;)
 
 ##Step 1 : Creating Directories
 
@@ -43,7 +43,7 @@ Create one directory for your `MAME Library` and create this directories inside 
 - Roms
 - Settings
 
-Purpose of this folder structure is managing all types of files seperately and easy to update.
+Purpose of this folder structure is managing all types of files separately and easy to update.
 
 ##Step 2 : Downloading Required Files
 
@@ -51,9 +51,9 @@ Purpose of this folder structure is managing all types of files seperately and e
 
 - Download and extract MAME emulator inside of your `Emulator` directory from [Official MAME Development Team's Website](http://mamedev.org)
 
-- Optionaly you can download `cheat.7z` file (I don't know exact URL but you can easily find around the web) and put it inside of your `Cheat` directory (do not extract it)
+- Optionally you can download `cheat.7z` file (I don't know exact URL but you can easily find around the web) and put it inside of your `Cheat` directory (do not extract it)
 
-- Download MAME Roms to your `Roms` directoy
+- Download MAME Roms to your `Roms` directory
 
 - Download BIOS files to your `Bios` directory
 

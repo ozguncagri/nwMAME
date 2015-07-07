@@ -1,3 +1,5 @@
+![nwMAME Screenshot](http://ozguncagri.github.io/nwMAME/nwMAME_screenshot.png)
+
 #What is nwMAME?
 
 nwMAME is multi-platform (Windows, Linux, OS X) MAME front-end which uses power of **Web**. It's built top of **NW.JS** with **HTML5**, **JavaScript**, **CSS3** and using several technologies like **Node.JS**, **AngularJS**, **jQuery**, **Semantic UI** and ect...

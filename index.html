@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="nwMAME">
+<head>
+    <meta charset="UTF-8">
+    <title>nwMAME</title>
+    <link rel="stylesheet" href="public/extLibraries/fontLatoStatic/lato.css">
+    <link rel="stylesheet" href="public/extLibraries/semantic-ui/dist/semantic.min.css">
+    <link rel="stylesheet" href="public/css/nwMAME.css">
+    <script src="public/extLibraries/jquery/dist/jquery.min.js" defer></script>
+    <script src="public/extLibraries/semantic-ui/dist/semantic.min.js" defer></script>
+    <script src="public/extLibraries/angular/angular.min.js" defer></script>
+    <script src="public/extLibraries/angular-animate/angular-animate.min.js" defer></script>
+    <script src="public/js/nwMAME.js" defer></script>
+</head>
+<body ng-controller="AppCtrl">
+<div class="nwMAME-noGameMessage" ng-if="userGames.length <= 0">
+    <div class="nwMAME-bigMessage">
+        No game found on your library!
+    </div>
+
+    <div class="nwMAME-noSettingsIndicator">
+        <i class="counterclockwise rotated huge reply icon"></i>
+        You can start with settings window
+    </div>
+</div>
+
+<div class="nwMAME-gameContents" ng-if="coverSize !== 'list'">
+    <large-cover ng-if="coverSize === 'large'" ng-repeat="g in userGames | filter:gameSearch" short-name="{{g[0]}}"
+                 full-name="{{g[1]}}"></large-cover>
+
+    <square-cover ng-if="coverSize === 'square'" ng-repeat="g in userGames | filter:gameSearch" short-name="{{g[0]}}"
+                  full-name="{{g[1]}}"></square-cover>
+</div>
+
+<div class="nwMAME-gameListContents" ng-if="coverSize === 'list'">
+    <table class="ui striped inverted black table" ng-if="userGames.length > 0">
+        <thead>
+        <tr>
+            <th colspan="2">
+                <strong>All MAME Games</strong>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="g in userGames | filter:gameSearch" ng-dblclick="runGame(g[0])">
+            <td>{{g[0]}}</td>
+            <td>{{g[1]}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="ui page dimmer nwMAME-gameRunning">
+    <div class="content">
+        <div class="center">
+            <h1 class="header">
+                <i class="massive inverted game icon"></i>
+            </h1>
+
+            <h1 class="header">Game is Running!</h1>
+
+            <div class="sub header">Close game to return</div>
+        </div>
+    </div>
+</div>
+
+<div class="ui modal nwMAME-settingsModal">
+    <div class="ui five labeled item icon menu">
+        <a class="red item" ng-class="{active:settingState == 'mame'}" ng-click="settingState = 'mame'">
+            <i class="game icon"></i>
+            MAME
+        </a>
+        <a class="orange item" ng-class="{active:settingState == 'cover'}" ng-click="settingState = 'cover'">
+            <i class="grid layout icon"></i>
+            Covers
+        </a>
+        <a class="purple item" ng-class="{active:settingState == 'expert'}" ng-click="settingState = 'expert'">
+            <i class="configure icon"></i>
+            Expert
+        </a>
+        <a class="blue item" ng-class="{active:settingState == 'logs'}" ng-click="settingState = 'logs'">
+            <i class="warning sign icon"></i>
+            Logs
+        </a>
+        <a class="teal item" ng-class="{active:settingState == 'debug'}" ng-click="settingState = 'debug'">
+            <i class="bug icon"></i>
+            Debug
+        </a>
+    </div>
+    <div class="content nwMAME-settingsContents">
+
+        <div class="ui form" ng-show="settingState === 'mame'">
+
+            <div class="ui segment">
+                <a class="ui ribbon teal label">MAME</a>
+
+                <div class="ui hidden divider"></div>
+
+                <div class="field">
+                    <label>MAME Output Directory (for ROM config and NVRAM files) <span class="ui red text">Hello</span></label>
+
+                    <div class="ui action input">
+                        <input type="text" placeholder="Path of MAME output directory" readonly="readonly"
+                               ng-model="mameDirectory">
+                        <button class="ui blue right labeled icon button" file-selector ng-model="mameDirectory">
+                            <i class="search icon"></i>
+                            Browse
+                            <input type="file" nwdirectory>
+                        </button>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>MAME Executable Path</label>
+
+                    <div class="ui action input">
+                        <input type="text" placeholder="Executable file path of MAME" readonly="readonly"
+                               ng-model="mameExecutable">
+                        <button class="ui blue right labeled icon button" file-selector ng-model="mameExecutable">
+                            <i class="search icon"></i>
+                            Browse
+                            <input type="file">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui segment">
+                <a class="ui ribbon teal label">Directories</a>
+
+                <div class="ui hidden divider"></div>
+
+                <div class="field">
+                    <label>ROM Files Directory</label>
+
+                    <div class="ui action input">
+                        <input type="text" placeholder="Path of ROM files directory" readonly="readonly"
+                               ng-model="romsDirectory">
+                        <button class="ui blue right labeled icon button" file-selector ng-model="romsDirectory">
+                            <i class="search icon"></i>
+                            Browse
+                            <input type="file" nwdirectory>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Bios Files Directory</label>
+
+                    <div class="ui action input">
+                        <input type="text" placeholder="Path of Bios files directory" readonly="readonly"
+                               ng-model="biosDirectory">
+                        <button class="ui blue right labeled icon button" file-selector ng-model="biosDirectory">
+                            <i class="search icon"></i>
+                            Browse
+                            <input type="file" nwdirectory>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Device Files Directory</label>
+
+                    <div class="ui action input">
+                        <input type="text" placeholder="Path of Device files directory" readonly="readonly"
+                               ng-model="deviceDirectory">
+                        <button class="ui blue right labeled icon button" file-selector ng-model="deviceDirectory">
+                            <i class="search icon"></i>
+                            Browse
+                            <input type="file" nwdirectory>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="ui segment">
+                <a class="ui ribbon teal label">Cheats</a>
+
+                <div class="ui hidden divider"></div>
+
+                <div class="inline field">
+                    <semantic-toggle ng-model="enableCheats">Enable Cheats</semantic-toggle>
+                </div>
+                <div class="field" ng-class="{disabled:!enableCheats}">
+                    <label>Cheats File (Select 7z formatted cheats file)</label>
+
+                    <div class="ui action input">
+                        <input type="text" placeholder="Path of cheats file" readonly="readonly"
+                               ng-disabled="!enableCheats"
+                               ng-model="cheatPath">
+                        <button class="ui blue right labeled icon button" ng-class="{disabled:!enableCheats}"
+                                file-selector
+                                ng-model="cheatPath">
+                            <i class="search icon"></i>
+                            Browse
+                            <input type="file" accept=".7z">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui segment">
+                <a class="ui ribbon teal label">Run In Window</a>
+
+                <div class="ui hidden divider"></div>
+
+                <div class="inline field">
+                    <semantic-toggle ng-model="mameWindow">Run games in window mode</semantic-toggle>
+                </div>
+            </div>
+
+            <div class="ui segment">
+                <a class="ui ribbon teal label">Game Library</a>
+
+                <div class="ui hidden divider"></div>
+
+                <div class="inline field">
+                    <div class="ui labeled fluid icon button" ng-click="updateLibrary()">
+                        <i class="unhide icon"></i>
+                        Update Game Library
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ui form" ng-show="settingState === 'cover'">
+            <div class="ui segment">
+                <a class="ui ribbon teal label">Covers</a>
+
+                <div class="ui hidden divider"></div>
+
+                <div class="field">
+                    <label>Cover Directory</label>
+
+                    <div class="ui action input">
+                        <input type="text" placeholder="Path of cover directory" readonly="readonly"
+                               ng-model="coverDirectory">
+                        <button class="ui blue right labeled icon button" file-selector ng-model="coverDirectory">
+                            <i class="search icon"></i>
+                            Browse
+                            <input type="file" nwdirectory>
+                        </button>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Cover Extension</label>
+
+                    <div class="three fluid ui buttons">
+                        <div class="ui button" ng-class="{active:coverExtension == '.jpg'}" ng-click="coverExtension = '.jpg'">*.JPG</div>
+                        <div class="ui button" ng-class="{active:coverExtension == '.png'}" ng-click="coverExtension = '.png'">*.PNG</div>
+                        <div class="ui button" ng-class="{active:coverExtension == '.gif'}" ng-click="coverExtension = '.gif'">*.GIF</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui segment">
+                <a class="ui ribbon teal label">Cover Size</a>
+
+                <div class="ui hidden divider"></div>
+
+                <div class="field">
+                    <div class="three fluid ui buttons">
+                        <div class="ui button" ng-class="{active:coverSize == 'large'}" ng-click="coverSize = 'large'">Large (1:1.35)</div>
+                        <div class="ui button" ng-class="{active:coverSize == 'square'}" ng-click="coverSize = 'square'">Square (1:1)</div>
+                        <div class="ui button" ng-class="{active:coverSize == 'list'}" ng-click="coverSize = 'list'">List (No Covers)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui form" ng-show="settingState === 'expert'">
+            <h1 class="ui centered header">Expert settings will be here on next versions!</h1>
+        </div>
+
+        <div class="ui form" ng-show="settingState === 'logs'">
+            <h1 class="ui centered header" ng-hide="sessionLogs.length > 0">
+                There is no log entries for current session yet!
+            </h1>
+
+            <div class="ui message" ng-repeat="l in sessionLogs"
+                 ng-class="{yellow:l.type==='stderr'}"
+                 ng-class="{red:l.type==='error'}">
+                <div class="header">
+                    {{l.process}} - {{l.date | date:'dd-MM-yyyy HH:mm:ss'}}
+                </div>
+                <pre>{{l.output}}</pre>
+            </div>
+        </div>
+
+        <div class="ui form" ng-show="settingState === 'debug'">
+            <div class="ui vertical fluid labeled icon massive buttons">
+                <div class="ui fluid labeled icon button" ng-click="reloadApplication()">
+                    <i class="refresh icon"></i>
+                    Reload Application
+                </div>
+                <div class="ui fluid labeled icon button" ng-click="openDevTools()">
+                    <i class="code icon"></i>
+                    Open Developer Tools
+                </div>
+                <div class="ui fluid labeled icon button" ng-click="openGithubPage()">
+                    <i class="github icon"></i>
+                    nwMAME Github Page
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="actions">
+        <div class="ui labeled icon negative button">
+            <i class="remove icon"></i>
+            Cancel
+        </div>
+        <div class="ui labeled icon positive button">
+            <i class="save icon"></i>
+            Save Settings
+        </div>
+    </div>
+</div>
+
+<div class="nwMAME-bottomNav">
+
+    <div class="ui icon buttons nwMAME-devButtons">
+        <div class="ui button" ng-click="settingsModal()"><i class="setting icon"></i></div>
+    </div>
+
+    <div class="ui search nwMAME-searchBar">
+        <div class="ui fluid left icon small input">
+            <i class="search icon"></i>
+            <input class="prompt" type="text" placeholder="Search Game" ng-model="gameSearch"
+                   ng-model-options="{debounce:500}">
+        </div>
+    </div>
+
+    <div class="nwMAME-logo">
+        nwMAME
+    </div>
+</div>
+</body>
+</html>

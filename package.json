@@ -1,0 +1,23 @@
+{
+  "main": "index.html",
+  "name": "nwMAME",
+  "description": "MAME front-end built on Node-WebKit",
+  "version": "0.1.0",
+  "keywords": [ "nwMAME" ],
+  "window": {
+    "title": "nwMAME",
+    "icon": "link.png",
+    "toolbar": false,
+    "frame": true,
+    "width": 1280,
+    "height": 720,
+    "position": "center",
+    "min_width": 1280,
+    "min_height": 720,
+    "single-intance": true
+  },
+  "webkit": {
+    "plugin": true,
+    "page-cache":false
+  }
+}

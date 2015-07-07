@@ -1,0 +1,244 @@
+@import "elements.less";
+
+@contentNavGap: 50px;
+@gradientTop: #262626;
+@gradientBottom: #1D1D1D;
+@contentArea: #222222;
+@backgroundColor: #404144;
+
+* {
+  .user-select();
+}
+
+body {
+  overflow: hidden;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+//Scrollbar styles
+::-webkit-scrollbar-track {
+  background-color: @backgroundColor;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: @backgroundColor;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #5c5c5c;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: lighten(#5c5c5c, 10%);
+}
+
+//Application styles
+.nwMAME-gameListContents {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: @contentNavGap;
+  overflow: auto;
+  background: @backgroundColor;
+
+  table{
+    tbody{
+      tr{
+        cursor: pointer;
+        &:hover{
+          background: #F8F8F8 !important;
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+.nwMAME-gameContents {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: @contentNavGap;
+  overflow: auto;
+  text-align: center;
+  padding: 10px;
+  line-height: 0;
+
+  background: @backgroundColor;
+
+  .nwMAME-squareGameItem {
+    width: 200px;
+    height: 230px;
+
+    .nwMAME-gameCover {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  .nwMAME-largeGameItem {
+    width: 200px;
+    height: 300px;
+
+    .nwMAME-gameCover {
+      width: 200px;
+      height: 270px;
+    }
+  }
+
+  .nwMAME-largeGameItem, .nwMAME-squareGameItem {
+    margin: 10px;
+    overflow: hidden;
+    display: inline-block;
+    background: @contentArea;
+    .rounded(5px);
+    .drop-shadow(0, 0, 5px, 1);
+
+    .transition();
+
+    &:hover {
+      .drop-shadow(0, 0, 30px, 1);
+      .scale(1.05);
+    }
+
+    &.ng-move,
+    &.ng-enter,
+    &.ng-leave {
+      .transition();
+    }
+
+    &.ng-leave.ng-leave-active,
+    &.ng-move,
+    &.ng-enter {
+      opacity: 0;
+    }
+
+    &.ng-leave,
+    &.ng-move.ng-move-active,
+    &.ng-enter.ng-enter-active {
+      opacity: 1;
+    }
+
+    .nwMAME-gameTitle {
+      max-width: 200px;
+      height: 30px;
+      line-height: 30px;
+      font-size: 15px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: white;
+      padding-left: 5px;
+      padding-right: 5px;
+      cursor: default;
+    }
+  }
+
+  //end of gameItem
+}
+
+.nwMAME-noGameMessage{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: @contentNavGap;
+  overflow: auto;
+  text-align: center;
+  padding: 10px;
+  line-height: 0;
+  z-index: 999;
+
+  .nwMAME-bigMessage{
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    cursor: default;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    font-size: 60px !important;
+    margin-top: -30px !important;;
+    color: #9f9f9f;
+
+    text-shadow: rgb(46, 46, 46) 0 4px 5px;
+  }
+
+  .nwMAME-noSettingsIndicator{
+    position: absolute;
+    left: 5px;
+    bottom: 15px;
+    color: #9f9f9f;
+    cursor: default;
+    text-shadow: rgb(46, 46, 46) 0 4px 5px;
+    .transition();
+
+    &:hover{
+      .transition();
+      .translate(0, 5px);
+    }
+  }
+}
+
+.nwMAME-settingsContents {
+  padding: 5px !important;
+
+  .form {
+    height: 400px;
+    overflow: auto;
+    padding: 10px;
+  }
+}
+
+.nwMAME-gameModal {
+  .content {
+    .header {
+      text-align: center;
+    }
+  }
+}
+
+.nwMAME-bottomNav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: @contentNavGap;
+  overflow: hidden;
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 1);
+  .gradient(@gradientTop, @gradientBottom, @gradientTop);
+  z-index: 999;
+
+  .nwMAME-logo {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    color: lighten(@gradientTop, 10%);
+    font-size: 30px;
+    font-family: Lato;
+    line-height: 40px;
+    font-weight: bold;
+    cursor: default;
+  }
+
+  .nwMAME-devButtons {
+    position: absolute;
+    left: 10px;
+    top: 8px;
+  }
+
+  .nwMAME-searchBar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 8px;
+    width: 400px;
+  }
+
+}

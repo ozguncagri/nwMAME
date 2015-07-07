@@ -10,7 +10,7 @@ As an OS X user, I highly influenced on [OpenEmu](http://openemu.org) project wh
 
 #Does nwMAME compatible with dedicated MAME-PCs?
 
-Technically speaking, it can run anywhere where **NW.JS** runs but; user interface is designed and aimed for keyboard-mouse use only and that's why it's not suitable for dedicated MAME-PCs. No one wants to use keyboard-mouse between their game sessions. That's why I'm planning any other project for dedicated MAME-PCs especially use it with mame joysticks. (or; I can merge these two project into one project. Hmmm)
+Technically speaking, it can run anywhere where **NW.JS** runs but; user interface is designed and aimed for keyboard-mouse use only and that's why it's not suitable for dedicated MAME-PCs. No one wants to use keyboard-mouse between their game sessions. That's why I'm planning any other project for dedicated MAME-PCs especially use it with MAME joysticks. (or; I can merge these two project into one project. Hmmm)
 
 #Final Notes :
 
@@ -103,6 +103,10 @@ Managing cover files are easy. Just put your cover image into `Covers` directory
 ###For Example;
 
 Do you want to add a cover to `Ultimate Mortal Kombat 3`? Just rename cover image as `umk3.jpg` and **Reload Application** from **Debug** tab in settings window or close and re-open nwMAME.
+
+##Final Step : Update Game Library
+
+Did you finished all steps successfully? Great, now you can update your game library on **MAME** tab. Updating game library process will take time, be patient until success message and save your settings!
 
 #What about updates?
 

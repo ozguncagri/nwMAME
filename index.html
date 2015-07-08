@@ -25,11 +25,11 @@
 </div>
 
 <div class="nwMAME-gameContents" ng-if="coverSize !== 'list'">
-    <large-cover ng-if="coverSize === 'large'" ng-repeat="g in userGames | filter:gameSearch" short-name="{{g[0]}}"
-                 full-name="{{g[1]}}"></large-cover>
+    <large-cover ng-if="coverSize === 'large'" ng-repeat="g in userGames | filter:gameSearch" short-name="{{::g[0]}}"
+                 full-name="{{::g[1]}}"></large-cover>
 
-    <square-cover ng-if="coverSize === 'square'" ng-repeat="g in userGames | filter:gameSearch" short-name="{{g[0]}}"
-                  full-name="{{g[1]}}"></square-cover>
+    <square-cover ng-if="coverSize === 'square'" ng-repeat="g in userGames | filter:gameSearch" short-name="{{::g[0]}}"
+                  full-name="{{::g[1]}}"></square-cover>
 </div>
 
 <div class="nwMAME-gameListContents" ng-if="coverSize === 'list'">
@@ -43,8 +43,8 @@
         </thead>
         <tbody>
         <tr ng-repeat="g in userGames | filter:gameSearch" ng-dblclick="runGame(g[0])">
-            <td>{{g[0]}}</td>
-            <td>{{g[1]}}</td>
+            <td>{{::g[0]}}</td>
+            <td>{{::g[1]}}</td>
         </tr>
         </tbody>
     </table>

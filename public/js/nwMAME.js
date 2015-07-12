@@ -3,6 +3,13 @@ var win = gui.Window.get();
 var cp = require('child_process');
 var fs = require("fs");
 
+//OS X Specific Window Menu
+if (process.platform === "darwin") {
+    var mb = new gui.Menu({type:"menubar"});
+    mb.createMacBuiltin("nwMAME");
+    win.menu = mb;
+}
+
 //Disable any file to drag into application window
 window.addEventListener("dragover", function (e) {
     e = e || event;

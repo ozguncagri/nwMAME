@@ -1,4 +1,4 @@
-![nwMAME Screenshot](http://ozguncagri.github.io/nwMAME/nwMAME_screenshot.png)
+![nwMAME Screenshot](https://raw.githubusercontent.com/ozguncagri/ozguncagri.github.io/gh-pages/nwMAME/nwMAME_screenshot.png)
 
 #What is nwMAME?
 
@@ -110,7 +110,7 @@ Did you finished all steps successfully? Great, now you can update your game lib
 
 #What about updates?
 
-Do you want to update MAME? Just download new version of MAME and extract it into you `Emulator` directory.
+Do you want to update MAME? Just download new version of MAME and extract it into your `Emulator` directory.
 
 Do you want to update `BIOS` or `Device` files? Download the file you want to update and replace it with the old one.
 

@@ -1,4 +1,4 @@
-![nwMAME Screenshot](https://raw.githubusercontent.com/ozguncagri/ozguncagri.github.io/gh-pages/nwMAME/nwMAME_screenshot.png)
+![nwMAME Screenshot](https://ozguncagri.github.io/nwMAME/nwMAME_screenshot.png)
 
 # What is nwMAME?
 
